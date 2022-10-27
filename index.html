@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REGISTRASI WEB</title>
+    <link rel="stylesheet" href="dist/bootstrap.min.css">
+    <script src="dist/jquery.js"></script>
+    <script src="dist/jquery.validate.js"></script>
+    <style>
+        body {
+            background-color: aqua;
+    }    
+        table {
+            border: 2px solid black;
+            margin-top: 50px;
+            margin-bottom: 50px;
+            background-color: aliceblue;
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            color: blue;
+    }
+        .error {
+            color : red;
+            font-size : 12px
+    }
+    </style>
+</head>
+<body>
+    <div>
+        <form action="" method="post" id="formregister">
+            <table align="center">
+            <tr>
+                <td align="center"><h2>REGISTRASI</h2></td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Nama depan</label>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" name="depan" size="50">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Nama belakang</label>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" name="belakang" size="50">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Alamat</label>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" name="alamat" size="50">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><br> Tanggal lahir : </label>
+                    <input type="date" name="tanggal">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><br> Jenis kelamim : </label>
+                    <input type="radio" name="jk" value="lk"/>Laki-laki
+                    <input type="radio" name="jk" value="pr"/>Perempuan
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label><br> Username</label>
+                    <div class="mb-2">
+                        <input type="text" class="form-control" name="username" size="50">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password</label>
+                    <div class="mb-2">
+                        <input type="password" class="form-control" name="pass" size="50">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    <input type="file" name="GAMBAR">
+                    <input type="submit" value="SUBMIT">
+                    <input type="reset" value="RESET">
+                </td>
+            </tr>
+            <tr>
+                <td align="center"><b><br> Nama : Abdi Naavi'al Umam Suleman</b></td>
+            </tr>
+            <tr>
+                <td align="center"><b>NIM : F55121029</b></td>
+            </tr>
+        </table>
+        </form>
+    </div>
+    <script src="dist/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#formregister').submit(function(event){
+                event.preventDefault();
+
+                $.validator.addMethod("valueNotEquals", function (value, element, arg) {
+                    return arg != value;
+                }, "value must not equal arg.");
+
+                $("#formregister").validate({
+
+                    highlight: function (input) {
+                        $(input).parents('.mb-2').addClass('error');
+                    },
+                    unhighlight: function (input){
+                        $(input).parents('.mb-2').removeClass('error');
+                    },
+                    errorPlacement: function (error, element){
+                        $(element).parents('.mb-2').append(error);
+                    },
+
+                    rules: {
+                        depan : "required",
+                        belakang : "required",
+                        alamat : "required",
+                        username : "required",
+                        pass: {
+                            required:true,
+                            minlength: 6,
+                            maxlength: 20
+                        },
+                    },
+                    messages: {
+                        depan : "*) Nama depan tidak boleh kosong",
+                        belakang : "*) Nama belakang tidak boleh kosong",
+                        alamat : "*) Alamat tidak boleh kosong",
+                        username : "*) Username tidak boleh kosong",
+                        pass : {
+                            required : "*) Password tidak boleh kosong",
+                            minlength: "*) Password tidak boleh kurang dari 6 karakter",
+                            maxlength: "*) Password tidak boleh lebih dari 20 karakter"
+                        },
+                    },
+                })
+            })
+        });
+    </script>
+</body>
+</html>
